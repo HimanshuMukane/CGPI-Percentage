@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CGPI and Percentage Calculator</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form id="calculatorForm">
+        <div class="form-group">
+          <label for="inputType">Select Input Type:</label>
+          <select class="form-control" id="inputType">
+            <option value="cgpi">CGPI</option>
+            <option value="percentage">Percentage</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="inputValue">Enter Value:</label>
+          <input type="number" class="form-control" id="inputValue" placeholder="Enter CGPI or Percentage" required>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="calculate()">Calculate</button>
+        <div class="form-group mt-4">
+          <label for="result">Result:</label>
+          <input type="text" class="form-control" id="result" readonly>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  function calculate() {
+    const inputType = document.getElementById("inputType").value;
+    const inputValue = parseFloat(document.getElementById("inputValue").value);
+    let result;
+
+    if (inputType === "cgpi") {
+      if (inputValue < 7) {
+        result = 7.1 * inputValue + 12;
+      } else {
+        result = 7.4 * inputValue + 12;
+      }
+    } else {
+      if (inputValue < 63.8) {
+        result = (inputValue - 12) / 7.1;
+      } else {
+        result = (inputValue - 12) / 7.4;
+      }
+    }
+
+    document.getElementById("result").value = result.toFixed(2);
+  }
+</script>
+
+</body>
+</html>
